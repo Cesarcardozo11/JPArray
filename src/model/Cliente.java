@@ -41,3 +41,5 @@ public class Cliente {
                '}';
     }
 }
+
+// Removed GestionClientesMatriz class from this file.
