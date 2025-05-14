@@ -8,10 +8,17 @@ import java.util.Arrays;
 public class SistemaGestionController {
     private SistemaGestionModel objModelo;
     private SistemaGestionView objVista;
+    private FranjasControlador objFranjasControlador; // Controlador de franjas
 
     public SistemaGestionController(SistemaGestionModel modelo, SistemaGestionView vista) {
         this.objModelo = modelo;
         this.objVista = vista;
+        this.objFranjasControlador = null; // Inicialización como null hasta que se asigne
+    }
+
+    // Método para asignar el controlador de franjas
+    public void FranjasControlador(FranjasControlador franjasControlador) {
+        this.objFranjasControlador = franjasControlador;
     }
 
     public void mCrearNuevoCliente() {
@@ -38,15 +45,22 @@ public class SistemaGestionController {
         }
     }
 
-    // Otros métodos para interactuar con el Modelo y la Vista para las demás funcionalidades
-    // (crear/editar registrador, cargar consumos, generar factura, etc.)
-
     public void mMostrarTodosClientes() {
         Cliente[] listaClientes = objModelo.obtenerTodosClientes();
         objVista.mMostrarListaClientes(Arrays.asList(listaClientes));
     }
 
+    // Método para calcular el consumo de energía
+    public void mCalcularConsumoEnergia() {
+        if (objFranjasControlador != null) {
+            objFranjasControlador.mEjecutarAplicacion(); // Llama al controlador de franjas
+        } else {
+            objVista.mMostrarMensaje("El controlador de franjas no está configurado.");
+        }
+    }
+
     public void mEjecutarAplicacion() {
+        objVista.mMostrarMensaje("Bienvenido al sistema de gestión de clientes.");
         int opcion;
         do {
             objVista.mMostrarMenuPrincipal();
@@ -58,8 +72,11 @@ public class SistemaGestionController {
                 case 2:
                     mEditarCliente();
                     break;
-                case 5: // Ejemplo de mostrar todos los clientes
+                case 3:
                     mMostrarTodosClientes();
+                    break;
+                case 4:
+                    mCalcularConsumoEnergia();
                     break;
                 case 0:
                     objVista.mMostrarMensaje("Saliendo del sistema.");

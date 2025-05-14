@@ -1,32 +1,47 @@
-package main;
 import model.Contador;
-import view.ContadorVista;
-import controller.ContadorControlador;
+import model.SistemaGestionModel;
+import View.ContadorVista;
 
-/**
- * Clase principa m,.{
- * +}l que inicializa el sistema, agrega contadores
- * y solicita la visualización de los mismos.
- */
+import java.util.Scanner;
+
+import Controller.FranjasControlador;
+import Controller.SistemaGestionController;
+import View.FranjaVista;
+import View.SistemaGestionView;
+import Controller.ContadorControlador;
+
 public class Principal {
+    private static Scanner objScanner;
+
     public static void main(String[] args) {
+        // Inicializar el Scanner
+        objScanner = new Scanner(System.in);
 
         // 1. Crear una instancia del Modelo
-        SistemaGestionModel objModelo = new SistemaGestionModel(100, 50, 1000); // Ejemplo de capacidades iniciales
+        SistemaGestionModel objModelo = new SistemaGestionModel(100, 50, 1000);
 
         // 2. Crear una instancia de la Vista
         SistemaGestionView objVista = new SistemaGestionView();
 
-        // 3. Crear una instancia del Controlador, pasándole el Modelo y la Vista
+        // 3. Crear una instancia del Controlador principal
         SistemaGestionController objControlador = new SistemaGestionController(objModelo, objVista);
 
-        // 4. Iniciar la aplicación a través del Controlador
+        // Crear la vista para franjas
+        FranjaVista objFranjaVista = new FranjaVista(objScanner);
+
+        // Crear el controlador para franjas
+        FranjasControlador objFranjasControlador = new FranjasControlador(objFranjaVista);
+
+        // Pasar el controlador de franjas al controlador principal
+        objControlador.FranjasControlador(objFranjasControlador);
+
+        // Iniciar la aplicación a través del Controlador principal
         objControlador.mEjecutarAplicacion();
 
-        // Crear la vista
+        // Crear la vista para contadores
         ContadorVista vista = new ContadorVista();
 
-        // Crear el controlador con capacidad para 5 contadores
+        // Crear el controlador para contadores con capacidad para 5 contadores
         ContadorControlador controlador = new ContadorControlador(5, vista);
 
         // Agregar contadores al sistema
@@ -36,7 +51,8 @@ public class Principal {
 
         // Mostrar todos los contadores almacenados
         controlador.mostrarTodos();
+
+        // Ejecutar la lógica principal del controlador de contadores
+        controlador.ejecutar();
     }
 }
-
-

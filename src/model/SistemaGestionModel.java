@@ -6,7 +6,7 @@ public class SistemaGestionModel {
     private int capacidadMaximaClientes;
     private int cantidadClientes;
 
-    public SistemaGestionModel(int capacidadInicialClientes) {
+    public SistemaGestionModel(int capacidadInicialClientes, int i, int j) {
         this.capacidadMaximaClientes = capacidadInicialClientes;
         this.matrizClientes = new Cliente[capacidadMaximaClientes];
         this.cantidadClientes = 0;
@@ -47,4 +47,6 @@ public class SistemaGestionModel {
     }
 
     // Métodos similares para Registrador, Consumo, etc. (con sus respectivas matrices)
+    
+   
 }
