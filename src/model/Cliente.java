@@ -5,9 +5,10 @@ public class Cliente {
     private String nombre;
     private String direccion;
 
-    public Cliente(String numeroIdentificacion, String nombre, String direccion) {
-        this.numeroIdentificacion = numeroIdentificacion;
+    public Cliente( String nombre,String numeroIdentificacion, String direccion) {
+        
         this.nombre = nombre;
+        this.numeroIdentificacion = numeroIdentificacion;
         this.direccion = direccion;
     }
 

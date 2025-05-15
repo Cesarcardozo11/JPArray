@@ -61,11 +61,20 @@ public class SistemaGestionController {
 
     public void mEjecutarAplicacion() {
         objVista.mMostrarMensaje("Bienvenido al sistema de gestión de clientes.");
+        System.out.println("\n     1. Crear Un nuevo cliente");
+        System.out.println("     2. Editar un cliente");
+        System.out.println("     3. Mostrar todos los clientes");
+        System.out.println("     4. Calcular consumo de energia");
+        System.out.println("     5. Salir");
+
+
         int opcion;
         do {
             objVista.mMostrarMenuPrincipal();
             opcion = objVista.mObtenerOpcionMenu();
+
             switch (opcion) {
+                
                 case 1:
                     mCrearNuevoCliente();
                     break;
@@ -78,13 +87,13 @@ public class SistemaGestionController {
                 case 4:
                     mCalcularConsumoEnergia();
                     break;
-                case 0:
+                case 5:
                     objVista.mMostrarMensaje("Saliendo del sistema.");
                     break;
                 default:
                     objVista.mMostrarMensaje("Opción inválida.");
             }
-        } while (opcion != 0);
+        } while (opcion != 5);
         objVista.cerrarScanner();
     }
 }

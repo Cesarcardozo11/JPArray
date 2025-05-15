@@ -13,13 +13,17 @@ public class SistemaGestionView {
     }
 
     public Cliente mSolicitarDatosCliente() {
+        
+        System.out.println("Ingrese el nombre del cliente");
+        String nombre = scanner.nextLine();
+
         System.out.println("Ingrese el número de identificación del cliente:");
         String numeroIdentificacion = scanner.nextLine();
-        System.out.println("Ingrese el nombre del cliente:");
-        String nombre = scanner.nextLine();
+
         System.out.println("Ingrese la dirección del cliente:");
         String direccion = scanner.nextLine();
-        return new Cliente(numeroIdentificacion, nombre, direccion);
+
+        return new Cliente( nombre, numeroIdentificacion, direccion);
     }
 
     public String mSolicitarIdCliente() {
